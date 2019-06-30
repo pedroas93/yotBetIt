@@ -11,14 +11,14 @@ class OneCountryList extends Component {
     let {searchArray, error}= this.props; 
     if( !error ){
         return (
-            <div className="scroll" >
+            <div className=" d-lg-block col-lg-12" style={{height: (window.innerHeight * .4)}} >
                 <div>
                     {searchArray.map(marker => {
                         return <button
                         key={Math.random()}
                         className="list-group-item list-group-item-action flex-column align-items-start scroll "
                             >
-                            <div className="justify-content-between">
+                            <div className="justify-content-between ">
                                 <small>{marker.region}</small>
                                 <h5 className="mb-1">
                                 {marker.name}

@@ -15,6 +15,7 @@ class Main extends Component {
     <div>
         <center><h1 className = "align-items-center">COUNTRIES</h1></center>
         <SpecificName/>
+        <br/>
         <ArrayStrings/>
         <CountriesList/>
         <SlotMachine/>

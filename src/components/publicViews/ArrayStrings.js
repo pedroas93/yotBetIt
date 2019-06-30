@@ -31,29 +31,22 @@ class ArrayStrings extends Component {
     });
   }
   successDataResponse = (data) => {
-    //   console.log('ENTER2????', data)
       if(!data[0].status){
-        //   console.log('DATA NAME IS-->', data[0], 'the state countries is-->', this.state.countries );
           if(!( this.state.countries.includes( data[0] ) )){
-            //   console.log('ENTER TO HERE????---->', data[0]);
               
               data[0].forEach(element => {
-                console.log('ELEMENT IS --->', element);
                 this.setState({
                     countries: [element, ...this.state.countries]
                   });
               });
           }
       }
-      // this.setState({searchArray: data[0], error: false})
   };
   failureDataResponse = (error) => {
-      console.log('ENTER333???');
     console.error(error)
   };
   handleClose = removedTag => {
     const tags = this.state.tags.filter(tag => tag !== removedTag);
-    console.log(tags);
     this.setState({ tags });
   };
 
@@ -71,7 +64,6 @@ class ArrayStrings extends Component {
     if (inputValue && tags.indexOf(inputValue) === -1) {
       tags = [...tags, inputValue];
     }
-    console.log(tags);
     this.setState({
       tags,
       inputVisible: false,

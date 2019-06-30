@@ -1,5 +1,17 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## FOR YOT BET IT
+
+For Yot Bet It, in this repository you will find the Front-end test, and also find in the SQL cartpea, the test on sql the graph and the creation of tables and the query.
+
+To run this project you have to follow the following steps:
+
+1) git clone https://github.com/pedroas93/yotBetIt-Back.git
+2) git pull origin master
+3) npm i
+4) npm start
+
+
 ## Available Scripts
 
 In the project directory, you can run:

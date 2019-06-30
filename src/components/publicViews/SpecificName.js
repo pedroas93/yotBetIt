@@ -45,7 +45,7 @@ class SpecificName extends Component {
   }
   element = () => (
     <div>
-        <div className=" d-lg-block col-lg-12" style={{height: (window.innerHeight * .3)}}>
+        <div className=" d-lg-block col-lg-12" >
             <div className="list-group">
                 <div className="list-group-item list-group-item-action flex-column align-items-start">
                     <h4>Question 1:</h4>
