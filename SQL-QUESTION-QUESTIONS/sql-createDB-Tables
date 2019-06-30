@@ -1,0 +1,112 @@
+CREATE TABLE casino (
+    id_casino   NUMBER NOT NULL,
+    name        VARCHAR2(4000) NOT NULL
+);
+
+ALTER TABLE casino ADD CONSTRAINT casino_pk PRIMARY KEY ( id_casino );
+
+CREATE TABLE country (
+    id_country   NUMBER NOT NULL,
+    name         VARCHAR2(4000) NOT NULL
+);
+
+ALTER TABLE country ADD CONSTRAINT country_pk PRIMARY KEY ( id_country );
+
+CREATE TABLE employee (
+    id_employee        NUMBER NOT NULL,
+    name               VARCHAR2(4000) NOT NULL,
+    casino_id_casino   NUMBER NOT NULL
+);
+
+ALTER TABLE employee ADD CONSTRAINT employee_pk PRIMARY KEY ( id_employee );
+
+CREATE TABLE favorite_game (
+    name2   VARCHAR2(4000) NOT NULL,
+    name    VARCHAR2(4000) NOT NULL
+);
+
+ALTER TABLE favorite_game ADD CONSTRAINT favorite_game_pk PRIMARY KEY ( name2 );
+
+CREATE TABLE game (
+    id_game            NUMBER NOT NULL,
+    casino_id_casino   NUMBER NOT NULL,
+    type_id_type       NUMBER NOT NULL,
+    name               VARCHAR2(4000) NOT NULL
+);
+
+ALTER TABLE game
+    ADD CONSTRAINT game_pk PRIMARY KEY ( id_game,
+                                         casino_id_casino,
+                                         type_id_type );
+
+CREATE TABLE game_country (
+    game_id_game         NUMBER NOT NULL,
+    game_id_casino       NUMBER NOT NULL,
+    game_id_type         NUMBER NOT NULL,
+    country_id_country   NUMBER NOT NULL
+);
+
+ALTER TABLE game_country
+    ADD CONSTRAINT game_country_pk PRIMARY KEY ( game_id_game,
+                                                 game_id_casino,
+                                                 game_id_type,
+                                                 country_id_country );
+
+CREATE TABLE player (
+    id_player             NUMBER NOT NULL,
+    name                  VARCHAR2(4000) NOT NULL,
+    favorite_game_name1   VARCHAR2(4000)
+);
+
+ALTER TABLE player ADD CONSTRAINT player_pk PRIMARY KEY ( id_player );
+
+CREATE TABLE player_country (
+    player_id_player     NUMBER NOT NULL,
+    country_id_country   NUMBER NOT NULL
+);
+
+ALTER TABLE player_country ADD CONSTRAINT player_country_pk PRIMARY KEY ( player_id_player,
+                                                                          country_id_country );
+
+CREATE TABLE type (
+    id_type   NUMBER NOT NULL,
+    name      VARCHAR2(4000) NOT NULL
+);
+
+ALTER TABLE type ADD CONSTRAINT type_pk PRIMARY KEY ( id_type );
+
+ALTER TABLE employee
+    ADD CONSTRAINT employee_casino_fk FOREIGN KEY ( casino_id_casino )
+        REFERENCES casino ( id_casino );
+
+ALTER TABLE game
+    ADD CONSTRAINT game_casino_fk FOREIGN KEY ( casino_id_casino )
+        REFERENCES casino ( id_casino );
+
+ALTER TABLE game_country
+    ADD CONSTRAINT game_country_country_fk FOREIGN KEY ( country_id_country )
+        REFERENCES country ( id_country );
+
+ALTER TABLE game_country
+    ADD CONSTRAINT game_country_game_fk FOREIGN KEY ( game_id_game,
+                                                      game_id_casino,
+                                                      game_id_type )
+        REFERENCES game ( id_game,
+                          casino_id_casino,
+                          type_id_type );
+
+ALTER TABLE game
+    ADD CONSTRAINT game_type_fk FOREIGN KEY ( type_id_type )
+        REFERENCES type ( id_type );
+
+ALTER TABLE player_country
+    ADD CONSTRAINT player_country_country_fk FOREIGN KEY ( country_id_country )
+        REFERENCES country ( id_country );
+
+ALTER TABLE player_country
+    ADD CONSTRAINT player_country_player_fk FOREIGN KEY ( player_id_player )
+        REFERENCES player ( id_player );
+
+ALTER TABLE player
+    ADD CONSTRAINT player_favorite_game_fk FOREIGN KEY ( favorite_game_name1 )
+        REFERENCES favorite_game ( name2 );

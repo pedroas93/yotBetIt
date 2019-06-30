@@ -1,0 +1,1 @@
+select * from player where player_favorite_game_fk = 'slot'
